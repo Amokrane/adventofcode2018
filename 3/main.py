@@ -4,12 +4,15 @@ import re
 def calculate_shared_surface(input_file):
 
     lines = [line.rstrip('\n') for line in open(input_file)]
+
     w, h = 1000, 1000
     rectangle = [["." for x in range(w)] for y in range(h)]
+
     regex = "#(\d+)\s@\s(\d+)\,(\d+)\:\s(\d+)x(\d+)"
+
     total_surface = 0
+
     no_overlap_claim = 0
-    
     no_overlap_claims = []
 
     for line in lines:
@@ -22,11 +25,9 @@ def calculate_shared_surface(input_file):
 
         has_overlap = False
 
-
         for i in range(height):
             for j in range(width):
                 value = rectangle[i + top_padding + 1][j + left_padding + 1]
-
 
                 if(value == "."):
                     rectangle[i + top_padding + 1][j + left_padding + 1] = claim_id
